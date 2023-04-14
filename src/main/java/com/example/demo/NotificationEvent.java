@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,7 +20,8 @@ public class NotificationEvent {
     private Long id;
 
     @Column(name = "notification_event_status")
-    private String status;
+    @Enumerated(EnumType.STRING) // use the enum type
+    private NotificationEventStatus status;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -27,9 +30,17 @@ public class NotificationEvent {
 
     public NotificationEvent() {}
 
-    public NotificationEvent(String status, LocalDateTime createdAt) {
+    public NotificationEvent(NotificationEventStatus status, LocalDateTime createdAt) {
         this.status = status;
         this.createdAt = createdAt;
+    }
+
+    public NotificationEventStatus getNotificationEventStatus() {
+        return status;
+    }
+
+    public void setNotificationEventStatus(NotificationEventStatus status) {
+        this.status = status;
     }
 
     // getters and setters omitted for brevity

@@ -34,5 +34,8 @@ public class NotificationPoller {
         // sort the events since returned result set is not sorted
         // process the events
         // change state to processed or failed depending on the situation
+        for (NotificationEvent notificationEvent : events) {
+            notificationEvent.setNotificationEventStatus(NotificationEventStatus.SUCCESSFULLY_PROCESSED);
+        }
     }
 }
